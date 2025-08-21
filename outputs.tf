@@ -1,9 +1,11 @@
-output "bucket_name" {
-  value       = module.s3_bucket.bucket_name
-  description = "S3 bucket name created by the module"
+output "bucket_names" {
+  value = { for k, m in module.s3_bucket : k => m.bucket_name }
 }
 
-output "bucket_arn" {
-  value       = module.s3_bucket.bucket_arn
-  description = "S3 bucket ARN created by the module"
+output "bucket_arns" {
+  value = { for k, m in module.s3_bucket : k => m.bucket_arn }
+}
+
+output "bucket_ids" {
+  value = {for k, m in module.s3_bucket : k => m.bucket_id}
 }
